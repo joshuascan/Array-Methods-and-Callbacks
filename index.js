@@ -81,12 +81,45 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
+// function getWinnersByYear(array, getYearsCB, getWinnersCB) {
+//     const winners = array.map(item => `In ${item.getYearsCB(array)}, ${item.getWinnersCB(array)} won the world cup!`);
+//     return winners;
+// }
+
+
+// function getWinnersByYear(array, getYearsCB, getWinnersCB) {
+//     const winners = []
+//     for(let i = 0; i < array; i++)
+//     winners.push(`In ${(getYearsCB(array)[i]}, ${getWinnersCB(array)[i]} won the world cup!`);
+//     return winners;
+// }
+
+// function getWinnersByYear(array, getYearsCB, getWinnersCB) {
+//     const winners = [];
+//     const years = getYearsCB(array, getFinals(array));
+//     const countries = getWinnersCB(array, getFinals(array));
+//     console.log(years);
+//     console.log(countries);
+//     for(let i = 0; i < array; i++){
+//     winners.push(`In ${years}, ${countries} won the world cup!`);
+//     }
+//     return winners;
+// }
+
 function getWinnersByYear(array, getYearsCB, getWinnersCB) {
-    const winners = array.map(item => `In ${item.[getYearsCB(array)]}, ${item.[getWinnersCB(array)]} won the world cup!`);
+    const winners = [];
+
+    const finals = getFinals(array);
+    const years = getYearsCB(finals, getFinals);
+    const winner = getWinnersCB(years, getYearsCB);
+
+    years.forEach(function(item, index){
+        winners.push(`In ${item}, ${winner[index]} won the world cup!`)
+    });
+
     return winners;
 }
 
-console.log(getWinnersByYear(fifaData, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
